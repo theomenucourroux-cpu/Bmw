@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#172a3a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BMW Easy Coding">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>BMW Easy Coding</title>
+<style>
+:root{--navy:#172a3a;--blue:#244c6c;--bg:#f3f6f8;--card:#fff;--text:#17212b;--muted:#637381;--line:#dbe2e8;--warn:#fff1cf;--green:#dff5e5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+header{background:var(--navy);color:white;padding:calc(18px + env(safe-area-inset-top)) 18px 18px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;background:var(--blue);display:grid;place-items:center;font-size:24px}.brand h1{font-size:19px;margin:0}.brand p{margin:4px 0 0;color:#d5e5f2;font-size:13px}.status{margin-top:14px;font-size:12px;color:#fff;display:flex;gap:7px;align-items:center}
+main{max-width:680px;margin:auto;padding:16px}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:13px;box-shadow:0 2px 7px #12233308}h2{font-size:18px;margin:0 0 12px}h3{font-size:16px;margin:0 0 8px}p{line-height:1.45}.muted{color:var(--muted);font-size:13px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}select,button{font:inherit}select{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;background:white;color:var(--text)}.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.nav button{background:white;border:1px solid var(--line);border-radius:12px;padding:12px 4px;font-size:13px}.nav button.active{background:#e7eef4;border-color:#9bb1c4;font-weight:700}.item{width:100%;text-align:left;background:white;border:1px solid var(--line);border-radius:12px;padding:13px;margin:6px 0;color:var(--text);display:flex;justify-content:space-between;gap:8px;align-items:center}.item.selected{border-color:#597b96;background:#f1f6f9}.primary{background:var(--blue);color:white;border:0;border-radius:12px;padding:13px;width:100%;font-weight:650;margin-top:8px}.secondary{background:white;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;margin-top:8px}.pill{display:inline-block;padding:5px 9px;border-radius:99px;font-size:11px;background:var(--warn);color:#805600}.info{background:#f2f5f7;border-radius:12px;padding:12px;font-size:13px;line-height:1.45}.warning{background:var(--warn);border-radius:12px;padding:12px;font-size:13px;line-height:1.45}.result{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px}.hidden{display:none!important}.foot{text-align:center;color:var(--muted);font-size:11px;padding:0 16px 12px}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">🚘</div><div><h1>BMW EASY CODING</h1><p>Diagnostic · Codage · Confort</p></div></div><div class="status">● Prototype interactif · aucune écriture réelle</div></header>
+<main>
+<section class="panel">
+<h2>Mon véhicule</h2><div class="fields">
+<div><label for="model">Modèle</label><select id="model"><option value="E87">Série 1 E87</option><option value="E53">X5 E53</option></select></div>
+<div><label for="engine">Motorisation</label><select id="engine"><option value="120d M47">120d M47</option><option value="Autre E87">Autre E87</option></select></div>
+</div><p class="muted" id="vehicleLabel">BMW E87 · 120d M47</p>
+</section>
+<nav class="nav"><button class="active" data-page="home">⌂ Accueil</button><button data-page="coding">⚙ Codage</button><button data-page="diag">⌕ Diagnostic</button></nav>
+<section id="home" class="page">
+<div class="panel"><h2>Que veux-tu faire ?</h2>
+<button class="item" data-goto="diag"><span><b>Diagnostic BMW</b><br><small class="muted">Défauts moteur et calculateurs</small></span><span>›</span></button>
+<button class="item" data-goto="coding"><span><b>Codages personnalisés</b><br><small class="muted">Éclairage, vitres et toit ouvrant</small></span><span>›</span></button>
+<button class="item" data-goto="tools"><span><b>Sauvegardes et outils</b><br><small class="muted">Préparer les fichiers et vérifier la connexion</small></span><span>›</span></button>
+</div>
+<div class="info">Cette version sert à tester l'interface. Elle ne se connecte pas encore à la voiture.</div>
+</section>
+<section id="coding" class="page hidden">
+<div class="panel"><h2>Catalogue de codage</h2><label for="category">Catégorie</label><select id="category"><option>Éclairage</option><option selected>Confort</option><option>Tableau de bord</option></select><div id="featureList"></div>
+<div class="result"><h3 id="featureTitle">Ouverture du toit ouvrant à la clé</h3><p class="muted" id="featureDescription"></p><span class="pill">Compatibilité à vérifier</span><button class="primary" id="guideButton">Ouvrir le guide détaillé</button></div>
+</div>
+</section>
+<section id="diag" class="page hidden">
+<div class="panel"><h2>Diagnostic BMW</h2><p class="muted">Choisis une opération à préparer.</p><div id="diagList"></div>
+<div class="result"><h3 id="diagTitle">Lire les défauts moteur</h3><p class="muted" id="diagDescription">La lecture réelle nécessite une connexion au DDE via K+DCAN et EDIABAS.</p><button class="primary" id="prepareDiag">Préparer cette opération</button><button class="secondary" id="sampleButton">Voir un exemple fictif</button><div id="sampleResult" class="result hidden"><span class="pill">Données fictives</span><p><b>Exemple : P0380</b></p><p class="muted">Exemple d'affichage du système de préchauffage. Aucun défaut n'a été lu sur la voiture.</p></div></div>
+</div>
+</section>
+<section id="tools" class="page hidden">
+<div class="panel"><h2>Outils et sauvegardes</h2><div id="toolsList"></div><div class="result"><h3 id="toolTitle">Vérifier la connexion K+DCAN</h3><p class="muted" id="toolDescription"></p><span class="pill">Action réelle non disponible</span><button class="primary" id="prepareTool">Préparer cette fonction</button></div></div>
+</section>
+<div class="panel"><h3>Limites du prototype</h3><p class="muted">Aucune lecture de défauts réelle, aucun effacement, aucune sauvegarde réelle et aucune écriture de codage. Ces fonctions demanderont une application PC, une connexion compatible et des essais sur le véhicule.</p></div>
+</main><div class="foot">BMW Easy Coding · prototype de démonstration</div>
+<script>
+const catalog={
+"Éclairage":["Angel Eyes plus lumineux","Feux de jour","Éclairage d’accueil","Éclairage de retour","Clignotants confort","Feux US / sidemarkers"],
+"Confort":["Ouverture des vitres à la clé","Fermeture des vitres à la clé","Ouverture du toit ouvrant à la clé","Fermeture du toit ouvrant à la clé","Verrouillage automatique","Déverrouillage à la coupure","Rétroviseurs rabattables"],
+"Tableau de bord":["Affichage numérique de vitesse","Test des aiguilles","Avertissement de vitesse"],
+"Diagnostic":["Lire les défauts moteur","Lire tous les calculateurs","Effacer les défauts après réparation","Afficher les informations du DDE"],
+"Outils":["Sauvegarder le codage d’origine","Restaurer une sauvegarde","Identifier le calculateur FRM","Vérifier la connexion K+DCAN"]
+};
+const descriptions={
+"Ouverture du toit ouvrant à la clé":"Nécessite un toit ouvrant électrique et un module compatible. L’ouverture doit être vérifiée séparément de la fermeture.",
+"Fermeture du toit ouvrant à la clé":"Nécessite un toit ouvrant électrique et un module compatible. Vérifier la protection anti-pincement et les paramètres de confort.",
+"Angel Eyes plus lumineux":"L’intensité dépend du FRM, des paramètres disponibles et du type d’anneaux montés.",
+"Lire les défauts moteur":"La lecture réelle nécessite une connexion fonctionnelle au DDE via K+DCAN et EDIABAS.",
+"Sauvegarder le codage d’origine":"Cette maquette ne crée pas de fichier réel. La version PC devra sauvegarder les données lues du calculateur.",
+"Restaurer une sauvegarde":"La restauration réelle nécessitera de vérifier que la sauvegarde correspond exactement au calculateur et au véhicule.",
+"Identifier le calculateur FRM":"La référence doit être lue dans les informations du calculateur ou vérifiée sur le véhicule.",
+"Vérifier la connexion K+DCAN":"Nécessite un pilote compatible, une configuration EDIABAS correcte et une interface fonctionnelle."
+};
+let selectedFeature="Ouverture du toit ouvrant à la clé", selectedDiag="Lire les défauts moteur", selectedTool="Vérifier la connexion K+DCAN";
+function showPage(p){document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));let el=document.getElementById(p);if(el)el.classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===p));}
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>{let p=b.dataset.goto;if(p==="tools")showPage("tools");else showPage(p)}));
+function renderList(container,items,selected,onSelect){container.innerHTML="";items.forEach(name=>{let b=document.createElement("button");b.className="item"+(name===selected?" selected":"");b.innerHTML="<span>"+name+"</span><span>›</span>";b.onclick=()=>onSelect(name);container.appendChild(b)})}
+function updateFeature(){document.getElementById("featureTitle").textContent=selectedFeature;document.getElementById("featureDescription").textContent=descriptions[selectedFeature]||"Fonction proposée sous réserve de compatibilité avec l’année et les équipements du véhicule.";renderList(document.getElementById("featureList"),catalog[document.getElementById("category").value],selectedFeature,n=>{selectedFeature=n;updateFeature()})}
+document.getElementById("category").addEventListener("change",()=>{selectedFeature=catalog[document.getElementById("category").value][0];updateFeature()});
+function updateDiag(){document.getElementById("diagTitle").textContent=selectedDiag;document.getElementById("diagDescription").textContent=descriptions[selectedDiag]||"Opération à valider avec la connexion de diagnostic réelle.";renderList(document.getElementById("diagList"),catalog.Diagnostic,selectedDiag,n=>{selectedDiag=n;updateDiag();document.getElementById("sampleResult").classList.add("hidden")})}
+function updateTools(){document.getElementById("toolTitle").textContent=selectedTool;document.getElementById("toolDescription").textContent=descriptions[selectedTool]||"Cette fonction n'est pas encore opérationnelle dans le prototype.";renderList(document.getElementById("toolsList"),catalog.Outils,selectedTool,n=>{selectedTool=n;updateTools()})}
+document.getElementById("model").addEventListener("change",()=>{let m=document.getElementById("model").value;let e=document.getElementById("engine");e.innerHTML=m==="E87"?'<option>120d M47</option><option>Autre E87</option>':'<option>3.0d</option><option>Autre X5</option>';updateVehicle()});
+document.getElementById("engine").addEventListener("change",updateVehicle);
+function updateVehicle(){document.getElementById("vehicleLabel").textContent="BMW "+document.getElementById("model").value+" · "+document.getElementById("engine").value}
+document.getElementById("sampleButton").onclick=()=>document.getElementById("sampleResult").classList.toggle("hidden");
+document.getElementById("guideButton").onclick=()=>alert("Guide à préparer : "+selectedFeature+"\n\nVéhicule : BMW "+document.getElementById("model").value+" · "+document.getElementById("engine").value+"\n\nCompatibilité à vérifier. Aucun codage n'a été effectué.");
+document.getElementById("prepareDiag").onclick=()=>alert("Préparation : "+selectedDiag+"\n\nPour un test réel, il faudra le câble K+DCAN, les pilotes et EDIABAS configurés sur un PC Windows. Aucun défaut n'a été lu.");
+document.getElementById("prepareTool").onclick=()=>alert("Préparation : "+selectedTool+"\n\nCette action n'est pas exécutée par la maquette.");
+updateFeature();updateDiag();updateTools();
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body></html>
